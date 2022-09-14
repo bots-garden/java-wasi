@@ -8,11 +8,11 @@ USER gitpod
 #RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
 #             && sdk install java 22.2.r17-grl"
 
-RUN brew install httpie && \
-    brew install bat && \
-    brew install exa && \
-    brew install hey && \
-    brew install redis
+#RUN brew install httpie && \
+#    brew install bat && \
+#    brew install exa && \
+#    brew install hey && \
+#    brew install redis
 
 # ------------------------------------
 # Install TinyGo
@@ -29,14 +29,6 @@ RUN curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/i
     curl https://get.wasmer.io -sSfL | sh && \
     curl https://wasmtime.dev/install.sh -sSf | bash
 
-# ------------------------------------
-# Install grain support
-# ------------------------------------
-ARG GRAIN_VERSION="0.5.3"
-
-RUN sudo curl -L --output /usr/local/bin/grain \
-https://github.com/grain-lang/grain/releases/download/grain-v${GRAIN_VERSION}/grain-linux-x64 \
-&& sudo chmod +x /usr/local/bin/grain
 
 # ------------------------------------
 # Install Rust support
