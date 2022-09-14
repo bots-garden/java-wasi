@@ -3,8 +3,8 @@
 image: k33g/java-wasi:0.0.0
 
 tasks:
-  #- init: echo ""
-  #  command: unset JAVA_TOOL_OPTIONS
+  - init: echo ""
+    command: unset JAVA_TOOL_OPTIONS
 
   - name: initialize
     before: |
