@@ -13,5 +13,6 @@
   "go.useLanguageServer": true,
   "terminal.integrated.defaultProfile.linux": "bash",
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000
+  "files.autoSaveDelay": 1000,
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
