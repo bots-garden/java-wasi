@@ -1,0 +1,36 @@
+#image:
+#  file: .gitpod.Dockerfile
+image: k33g/java-wasi:0.0.0
+
+tasks:
+  #- init: echo ""
+  #  command: unset JAVA_TOOL_OPTIONS
+
+  - name: initialize
+    before: |
+      # ------------------------------------
+      # wasmer
+      # ------------------------------------
+      source /home/gitpod/.wasmer/wasmer.sh
+      wasmer --version
+      # ------------------------------------
+      # wasmtime
+      # ------------------------------------
+      wasmtime --version
+      # ------------------------------------
+      # wasmedge dependencies
+      # ------------------------------------
+      #source /home/gitpod/.wasmedge/env
+      wasmedge --version
+    init: |
+      echo "🚀 initialize"
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+    - golang.go
+    - pkief.material-icon-theme
+    - aaron-bond.better-comments
+    - grain-lang.vscode-grain
+    - rust-lang.rust
+
