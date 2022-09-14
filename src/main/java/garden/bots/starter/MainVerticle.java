@@ -1,5 +1,10 @@
 package garden.bots.starter;
 
+import java.io.IOException;
+import java.nio.file.*;
+
+import org.wasmer.Instance;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 
@@ -17,21 +22,31 @@ public class MainVerticle extends AbstractVerticle {
         startPromise.complete();
 
         // `simple.wasm` is located at `tests/resources/`.
-        Path wasmPath = Paths.get(new Example().getClass().getClassLoader().getResource("simple.wasm").getPath());
+        Path wasmPath = Paths.get(new MainVerticle().getClass().getClassLoader().getResource("hey_rust.wasm").getPath());
 
         // Reads the WebAssembly module as bytes.
-        byte[] wasmBytes = Files.readAllBytes(wasmPath);
+        byte[] wasmBytes;
+        try {
+          wasmBytes = Files.readAllBytes(wasmPath);
 
-        // Instantiates the WebAssembly module.
-        Instance instance = new Instance(wasmBytes);
+          // Instantiates the WebAssembly module.
+          Instance instance = new Instance(wasmBytes);
 
-        // Calls an exported function, and returns an object array.
-        Object[] results = instance.exports.getFunction("sum").apply(5, 37);
+          // Calls an exported function, and returns an object array.
+          Object[] results = instance.exports.getFunction("sum").apply(5, 37);
 
-        System.out.println((Integer) results[0]); // 42
+          System.out.println((Integer) results[0]); // 42
 
-        // Drops an instance object pointer which is stored in Rust.
-        instance.close();
+          // Drops an instance object pointer which is stored in Rust.
+          instance.close();
+
+
+
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
 
 
         System.out.println("HTTP server started on port 8888");

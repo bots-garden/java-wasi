@@ -14,5 +14,6 @@
   "terminal.integrated.defaultProfile.linux": "bash",
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:jni+resolve=off"
 }
